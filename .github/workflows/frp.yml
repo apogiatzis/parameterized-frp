@@ -5,17 +5,17 @@ on:
     branches: ['main']
 
 jobs:
-  frpc-amd64:
-    uses: ./.github/workflows/build-frpc-amd64.yml
+  # frpc-amd64:
+  #   uses: ./.github/workflows/build-frpc-amd64.yml
   
-  frpc-arm64:
-    uses: ./.github/workflows/build-frpc-arm64.yml
+  # frpc-arm64:
+  #   uses: ./.github/workflows/build-frpc-arm64.yml
 
-  frps-amd64:
-    uses: ./.github/workflows/build-frps-amd64.yml
+  # frps-amd64:
+  #   uses: ./.github/workflows/build-frps-amd64.yml
 
-  frps-arm64:
-    uses: ./.github/workflows/build-frps-arm64.yml
+  # frps-arm64:
+  #   uses: ./.github/workflows/build-frps-arm64.yml
 
   manifest-tool:
     runs-on: ubuntu-latest
@@ -34,5 +34,7 @@ jobs:
         wget https://github.com/estesp/manifest-tool/releases/download/v2.0.6/binaries-manifest-tool-2.0.6.tar.gz -O binaries-manifest-tool-2.0.6.tar.gz
         tar zxvf binaries-manifest-tool-2.0.6.tar.gz
         chmod +x manifest-tool-linux-amd64
+        ls
+        pwd
         ./manifest-tool-linux-amd64 push from-spec ./frpc-github.yaml
         ./manifest-tool-linux-amd64 push from-spec ./frps-github.yaml
