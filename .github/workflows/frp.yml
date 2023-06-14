@@ -34,5 +34,5 @@ jobs:
         wget https://github.com/estesp/manifest-tool/releases/download/v2.0.6/binaries-manifest-tool-2.0.6.tar.gz -O binaries-manifest-tool-2.0.6.tar.gz
         tar zxvf binaries-manifest-tool-2.0.6.tar.gz
         chmod +x manifest-tool-linux-amd64
-        ./manifest-tool-linux-amd64 push from-spec frpc-github.yaml
-        ./manifest-tool-linux-amd64 push from-spec frps-github.yaml
+        ./manifest-tool-linux-amd64 push from-spec ./frpc-github.yaml
+        ./manifest-tool-linux-amd64 push from-spec ./frps-github.yaml

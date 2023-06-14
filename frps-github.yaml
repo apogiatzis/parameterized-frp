@@ -1,10 +1,10 @@
 image: ghcr.io/apogiatzis/frps:main
 manifests:
-  - image: ghcr.io/apogiatzis/frps::amd64-main
+  - image: ghcr.io/apogiatzis/frps:amd64-main
     platform:
       architecture: amd64
       os: linux
-  - image: ghcr.io/snowdreamtech/frps:arm64-latest
+  - image: ghcr.io/apogiatzis/frps:arm64-main
     platform:
       architecture: arm64
       os: linux
