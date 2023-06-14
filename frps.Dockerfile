@@ -9,6 +9,6 @@ FROM alpine:3
 
 COPY --from=building /building/bin/frps /usr/bin/frps
 
-COPY frps_ctf.ini /conf/frps.ini
+COPY frps.ini /conf/frps.ini
 
 ENTRYPOINT ["/usr/bin/frps","-c","/conf/frps.ini"]
