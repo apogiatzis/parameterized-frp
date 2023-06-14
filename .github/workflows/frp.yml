@@ -19,7 +19,7 @@ jobs:
 
   manifest-tool:
     runs-on: ubuntu-latest
-    needs: [frpc-amd64, frpc-arm64, frps-arm64, frps-arm64]
+    needs: [frpc-amd64, frpc-arm64, frps-amd64, frps-arm64]
     steps:
       -
         name: Login to GitHub Container Registry
