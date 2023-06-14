@@ -1,12 +1,14 @@
 name: Build frpc image
 
-on: [workflow_call]  # allow this workflow to be called from other workflows
+on:
+  push:
+    branches: ['main']
 
 env:
   REGISTRY: ghcr.io
 
 jobs:
-  run:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -14,7 +16,7 @@ jobs:
         with:
           submodules: 'true'
       
-     - name: Log in to the Container registry
+      - name: Log in to the Container registry
         uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
         with:
           registry: ${{ env.REGISTRY }}
@@ -28,7 +30,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: frpc
+          file: frpc.Dockerfile
           push: true
           tags: |
             ghcr.io/apogiazis/frpc:latest
