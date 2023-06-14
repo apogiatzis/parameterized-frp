@@ -1,0 +1,11 @@
+image: ghcr.io/apogiatzis/frpc:main
+manifests:
+  - image: ghcr.io/apogiatzis/frpc::amd64-main
+    platform:
+      architecture: amd64
+      os: linux
+  - image: ghcr.io/snowdreamtech/frpc:arm64-latest
+    platform:
+      architecture: arm64
+      os: linux
+      variant: v8

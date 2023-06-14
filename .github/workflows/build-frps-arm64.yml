@@ -37,7 +37,7 @@ jobs:
           context: .
           file: frps.Dockerfile
           push: true
-          platforms: linux/amd64
+          platforms: linux/arm64
           tags: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:amd64-main
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:arm64-main
           labels: ${{ steps.meta.outputs.labels }}

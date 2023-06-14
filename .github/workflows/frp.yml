@@ -1,0 +1,38 @@
+name: Build images
+
+on:
+  push:
+    branches: ['main']
+
+jobs:
+  frpc-amd64:
+    uses: ./.github/workflows/build-frpc-amd64.yml
+  
+  frpc-arm64:
+    uses: ./.github/workflows/build-frpc-arm64.yml
+
+  frps-arm64:
+    uses: ./.github/workflows/build-frps-amd64.yml
+
+  frps-arm64:
+    uses: ./.github/workflows/build-frps-arm64.yml
+
+  manifest-tool:
+    runs-on: ubuntu-latest
+    needs: [frpc-amd64, frpc-arm64, frps-arm64, frps-arm64]
+    steps:
+      -
+        name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}   
+      - 
+       name: Push Images to DockerHub and GitHub Container Registry
+       run: |
+        wget https://github.com/estesp/manifest-tool/releases/download/v2.0.6/binaries-manifest-tool-2.0.6.tar.gz -O binaries-manifest-tool-2.0.6.tar.gz
+        tar zxvf binaries-manifest-tool-2.0.6.tar.gz
+        chmod +x manifest-tool-linux-amd64
+        ./manifest-tool-linux-amd64 push from-spec frpc-github.yaml
+        ./manifest-tool-linux-amd64 push from-spec frps-github.yaml
