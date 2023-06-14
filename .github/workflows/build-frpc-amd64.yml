@@ -24,14 +24,17 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+      
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
       
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
-        with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+      # - name: Extract metadata (tags, labels) for Docker
+      #   id: meta
+      #   uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+      #   with:
+      #     images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
             
       - name: Build and push
         uses: docker/build-push-action@v3
@@ -39,5 +42,7 @@ jobs:
           context: .
           file: frpc.Dockerfile
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          platforms: linux/amd64
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:amd64-main
           labels: ${{ steps.meta.outputs.labels }}
